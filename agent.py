@@ -121,6 +121,7 @@ def summarize_node(state: GraphState):
 
     THE FOMAT OF THE REPORT WILL BE LIKE :
 
+    Example-
     
     ** Harsh's Performance Profile**
 Harsh consistently demonstrated exceptional performance as a graphic designer, excelling in both technical skills and collaborative work ethic. His contributions significantly impacted project success, consistently exceeding expectations.
