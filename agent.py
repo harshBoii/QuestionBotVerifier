@@ -118,6 +118,32 @@ def summarize_node(state: GraphState):
 
     --------VERY IMPORTANT---------------
     GENERATE A WELL FORMATTED REPORT of the former employee's profile IN SYNC WITH THE Q AND A.
+
+    THE FOMAT OF THE REPORT WILL BE LIKE :
+
+    
+    ** Harsh's Performance Profile**
+Harsh consistently demonstrated exceptional performance as a graphic designer, excelling in both technical skills and collaborative work ethic. His contributions significantly impacted project success, consistently exceeding expectations.
+
+**Skills and Expertise**
+
+Design Innovation and Effectiveness: Harsh's design ideas were demonstrably effective and innovative, as evidenced by his work on an internal performance tracking dashboard (Q1). His modular card-based design, inspired by modern data visualization practices, significantly improved user engagement and intuitiveness. Similarly, his minimalistic yet vibrant design for a client-facing e-commerce platform (Q1) enhanced usability and created a polished brand identity. This showcases his ability to translate complex requirements into intuitive and visually striking user interfaces. His proficiency in Adobe Photoshop and Illustrator (Q2) is exceptional. He leverages these tools not just for visual appeal but also for creating functional and cross-platform adaptable assets. His skills extend to image refinement, web/mobile optimization, and pixel-perfect UI component creation (Q2). He displays a keen understanding of vector graphics, as seen in his creation of scalable icons, logos, and illustrations (Q2).
+
+Technical Proficiency: His technical mastery (Q2) allows for seamless transitions from concept to execution, making him highly competent and above average in practical application.
+
+Time Management and Project Delivery: Harsh consistently met deadlines and project requirements (Q3), often delivering ahead of schedule. His ability to incorporate last-minute feedback on a client's landing page redesign without impacting launch, and his proactive identification of potential bottlenecks on a data visualization dashboard (Q3) highlight his exceptional time management and proactive problem-solving skills. Even with shifting mid-project requirements, he effectively communicated with stakeholders, realigned priorities, and still delivered on time.
+
+**Work Ethic and Collaboration:**
+
+Collaboration and Communication: Harsh is a highly effective collaborator (Q4), balancing creativity with openness to feedback. His proactive initiation of brainstorming sessions, valuing diverse perspectives from developers, designers, and product managers, demonstrates a commitment to teamwork. His ability to translate technical constraints into design-friendly solutions without compromising user experience (Q4), alongside sharing iterative mockups early for constructive critique, fosters a collaborative environment leading to superior outcomes. His approachable communication style and mentorship of junior designers further solidify his collaborative strength.
+
+Strengths and Weaknesses: His greatest strengths (Q5) are creativity, attention to detail, and a user-centric approach. He possesses a natural ability to translate abstract concepts into visually appealing and functional designs. His strong command of design tools and knowledge of current trends produces innovative and polished work. No significant weaknesses were identified in the feedback.
+
+Overall Performance: Harsh's performance as a graphic designer was consistently exceptional, characterized by his technical expertise, innovative design thinking, strong work ethic, and effective collaboration skills. He is a highly valuable asset to any team.
+
+
+
+
     USE THE REFERENCE FROM QUESTION AND ANSWER AS AN EXAMPLE TO DEMONSTRATE YOUR POINT
 
     -------------------------------------
