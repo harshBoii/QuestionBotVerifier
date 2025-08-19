@@ -117,8 +117,9 @@ def summarize_node(state: GraphState):
     Based on the following questions and answers from a feedback session with an ex-boss
 
     --------VERY IMPORTANT---------------
-    write a TRUE , professional summary of the former employee's profile IN SYNC WITH THE Q AND A.
+    GENERATE A WELL FORMATTED REPORT of the former employee's profile IN SYNC WITH THE Q AND A.
     USE THE REFERENCE FROM QUESTION AND ANSWER AS AN EXAMPLE TO DEMONSTRATE YOUR POINT
+
     -------------------------------------
 
     --------------IMPORTANT---------------
