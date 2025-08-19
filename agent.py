@@ -57,7 +57,12 @@ def generate_questions_node(state: GraphState):
     Return the questions as a numbered list. For example:
     1. First question?
     2. Second question?
+
+    Example of a question:
+    How was {name}'s Reputation as {profession} in {work_experience}
+
     """
+
 
     response = llm.invoke(prompt)
     questions = [q.strip() for q in response.content.split('\n') if q.strip() and q[0].isdigit()]
