@@ -1,7 +1,7 @@
 # main.py
 
 import uuid
-from fastapi import FastAPI
+from fastapi import FastAPI , HTTPException
 from pydantic import BaseModel
 import uvicorn
 from langgraph.types import Command
@@ -9,7 +9,8 @@ from langgraph.types import Command
 from agent import agent_app
 from fastapi.middleware.cors import CORSMiddleware
 
-
+from fastapi.responses import PlainTextResponse
+from emailAgent import email_agent_app, EmailAgentState
 
 # Define the data models for the request bodies
 class FeedbackContext(BaseModel):
@@ -22,6 +23,12 @@ class ContinueBody(BaseModel):
     answer: str
     # The client must now send back the checkpoint_id
     checkpoint_id: str
+
+class EmailRequest(BaseModel):
+    company_name:str
+    company_type: str
+    email_type: str
+    prompt: str
 
 # Create the FastAPI app instance
 app = FastAPI(
@@ -105,6 +112,43 @@ async def continue_feedback_session(body: ContinueBody):
             "question": response.get("current_question"),
             "checkpoint_id": latest_snapshot.config['configurable']['checkpoint_id']
         }
+
+
+@app.post("/generate-email", response_class=PlainTextResponse)
+async def create_email(request: EmailRequest):
+    """
+    Receives company details and a prompt, generates an email, and returns it.
+    """
+    try:
+        # Prepare the input for the LangGraph agent
+        # The structure must match the `EmailAgentState` TypedDict
+        inputs = {
+            "company_name":request.company_name,
+            "company_type": request.company_type,
+            "email_type": request.email_type,
+            "prompt": request.prompt,
+            "session_id": uuid.uuid4().hex[:8]  # Generate a unique ID for this run
+        }
+        print(request.company_name)
+        # Invoke the agent to run the graph and get the final state
+        # The .invoke() method is synchronous, which is fine for this use case.
+        # For long-running tasks, you might consider async invocation.
+        final_state = email_agent_app.invoke(inputs)
+
+        # Extract the generated email from the final state of the graph
+        generated_email = final_state.get("generated_email")
+
+        if not generated_email:
+            raise HTTPException(status_code=500, detail="Email generation failed to produce content.")
+            
+        # Return the generated email as a plain text response
+        return PlainTextResponse(content=generated_email)
+
+    except Exception as e:
+        # Catch any errors during the agent's execution
+        print(f"An error occurred: {e}")
+        raise HTTPException(status_code=500, detail=f"An internal error occurred: {e}")
+
 
 @app.get("/")
 def read_root():

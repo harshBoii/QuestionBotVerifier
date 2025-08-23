@@ -61,6 +61,9 @@ def generate_questions_node(state: GraphState):
     Example of a question:
     How was {name}'s Reputation as {profession} in {work_experience}
 
+    -------VERY IMPORTANT-----------
+        The First Question Will be Descriptive But The Remaining 4 Question will be Very Short Word Type That User can answer as "good" , "above average" and so on. 
+
     """
 
 
