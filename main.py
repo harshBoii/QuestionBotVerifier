@@ -1,18 +1,20 @@
 # main.py
 
 import uuid
-from fastapi import FastAPI , HTTPException
+from fastapi import FastAPI , HTTPException , Body
 from pydantic import BaseModel
 import uvicorn
 from langgraph.types import Command
-# Import the agent_app from your corrected agent.py
 from agent import agent_app
 from fastapi.middleware.cors import CORSMiddleware
-
+from typing import TypedDict
+from typing_extensions import Annotated
+from langgraph.graph.message import add_messages
 from fastapi.responses import PlainTextResponse
 from emailAgent import email_agent_app, EmailAgentState
+from flow_graph import generate_flow_from_description
 
-# Define the data models for the request bodies
+
 class FeedbackContext(BaseModel):
     profession: str
     work_experience: str
@@ -29,6 +31,11 @@ class EmailRequest(BaseModel):
     company_type: str
     email_type: str
     prompt: str
+
+class FlowState(TypedDict):
+    description: str
+    type: str  # Add the missing variable here
+    messages: Annotated[list, add_messages]
 
 # Create the FastAPI app instance
 app = FastAPI(
@@ -148,6 +155,17 @@ async def create_email(request: EmailRequest):
         # Catch any errors during the agent's execution
         print(f"An error occurred: {e}")
         raise HTTPException(status_code=500, detail=f"An internal error occurred: {e}")
+    
+@app.post("/generate-flow")
+async def generate_flow(data: dict = Body(...)):
+    """
+    Input: { "description": "..." }
+    Output: { "nodes": [...], "edges": [...] }
+    """
+    description = data.get("description", "")
+    
+    # Call the function with only the description
+    return await generate_flow_from_description(description)
 
 
 @app.get("/")
